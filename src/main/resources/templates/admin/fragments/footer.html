@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <!-- Footer Fragment (Chứa thông tin sinh viên thực hiện theo yêu cầu bài toán) -->
+    <footer th:fragment="footer" class="bg-dark text-white-50 py-4 mt-5 border-top border-secondary">
+        <div class="container">
+            <div class="row align-items-center g-3">
+                <!-- Cột 1: Thông tin đề tài & Trường -->
+                <div class="col-md-5 text-center text-md-start">
+                    <h5 class="text-white fw-bold mb-1">
+                        <i class="fa-solid fa-graduation-cap text-warning me-2"></i>
+                        TRƯỜNG ĐẠI HỌC SƯ PHẠM KỸ THUẬT TP.HCM
+                    </h5>
+                    <p class="mb-1 text-light small">
+                        <strong>Khoa:</strong> Công Nghệ Thông Tin - <strong>Bộ môn:</strong> Công Nghệ Phần Mềm
+                    </p>
+                    <p class="mb-0 text-secondary small">
+                        <strong>Môn học:</strong> Lập Trình Web (WEBPR330479) | <strong>GVHD:</strong> ThS. Nguyễn Hữu Trung
+                    </p>
+                </div>
+
+                <!-- Cột 2: Thông tin sinh viên thực hiện -->
+                <div class="col-md-4 text-center">
+                    <div class="p-2 rounded bg-secondary bg-opacity-25 border border-secondary border-opacity-50">
+                        <div class="text-warning fw-bold small text-uppercase mb-1">
+                            <i class="fa-solid fa-user-check me-1"></i> Sinh Viên Thực Hiện
+                        </div>
+                        <div class="text-white fw-bold fs-6">
+                            Nguyễn Quang Vinh
+                        </div>
+                        <div class="text-info small">
+                            <strong>MSSV:</strong> 24133074
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cột 3: Công nghệ sử dụng -->
+                <div class="col-md-3 text-center text-md-end">
+                    <span class="badge bg-success me-1 mb-1">Spring Boot 3</span>
+                    <span class="badge bg-info text-dark me-1 mb-1">Thymeleaf</span>
+                    <span class="badge bg-warning text-dark me-1 mb-1">Layout Dialect</span>
+                    <span class="badge bg-secondary mb-1">SQL Server</span>
+                    <div class="small text-secondary mt-2">
+                        © 2026 HCMUTE - All rights reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

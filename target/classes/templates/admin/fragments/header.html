@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <!-- Header Fragment -->
+    <header th:fragment="header" class="border-bottom bg-dark text-white shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
+            <div class="container-fluid px-4">
+                <!-- Brand / Logo -->
+                <a class="navbar-brand d-flex align-items-center" th:href="@{/admin/categories/searchpaginated}">
+                    <i class="fa-solid fa-shapes text-warning fs-3 me-2"></i>
+                    <div>
+                        <span class="fw-bold fs-5 text-light">HCMUTE</span>
+                        <small class="d-block text-secondary" style="font-size: 0.72rem; line-height: 1;">Category Manager</small>
+                    </div>
+                </a>
+
+                <!-- Responsive toggler -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdminContent"
+                        aria-controls="navbarAdminContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navigation menu -->
+                <div class="collapse navbar-collapse" id="navbarAdminContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
+                        <li class="nav-item">
+                            <a class="nav-link text-white-50" th:href="@{/admin/categories/searchpaginated}">
+                                <i class="fa-solid fa-table-list me-1"></i>
+                                <span th:text="#{iotstar.value.viewListCate}">Phân trang & Tìm kiếm</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white-50" th:href="@{/admin/categories}">
+                                <i class="fa-solid fa-list-check me-1"></i>
+                                <span th:text="#{iotstar.value.listCate}">Tất cả danh mục</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white-50" th:href="@{/admin/categories/add}">
+                                <i class="fa-solid fa-circle-plus me-1 text-success"></i>
+                                <span th:text="#{iotstar.value.addCate}">Thêm mới</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Language Switcher & Student Profile in Header -->
+                    <div class="d-flex align-items-center gap-3">
+                        <!-- Language Switcher (i18n) -->
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Language Switcher">
+                            <a th:href="@{''(language='vi_VN')}" class="btn btn-outline-warning text-white btn-sm" title="Tiếng Việt">
+                                🇻🇳 Tiếng Việt
+                            </a>
+                            <a th:href="@{''(language='en')}" class="btn btn-outline-info text-white btn-sm" title="English">
+                                🇺🇸 English
+                            </a>
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="vr bg-secondary d-none d-lg-block" style="height: 30px;"></div>
+
+                        <!-- STUDENT AVATAR & INFO IN HEADER (Theo yêu cầu: header chứa hình của mình) -->
+                        <div class="d-flex align-items-center bg-secondary bg-opacity-25 px-3 py-1 rounded-pill border border-secondary border-opacity-50">
+                            <!-- Hình ảnh của sinh viên -->
+                            <img th:src="@{/images/avatar.jpg}" alt="Nguyễn Quang Vinh"
+                                 class="rounded-circle border border-2 border-warning shadow-sm me-2"
+                                 style="width: 44px; height: 44px; object-fit: cover;">
+                            <div class="text-start me-1">
+                                <div class="fw-bold text-white small" style="line-height: 1.2;">
+                                    Nguyễn Quang Vinh
+                                </div>
+                                <span class="badge bg-warning text-dark py-0 px-2" style="font-size: 0.7rem;">
+                                    MSSV: 24133074
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+</body>
+</html>

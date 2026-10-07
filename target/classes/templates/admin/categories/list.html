@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout-admin.html}">
+<head>
+    <title>All Categories - HCMUTE</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-dark text-white py-3 d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 fw-bold">
+                            <i class="fa-solid fa-list-ul me-2"></i>
+                            <span th:text="#{iotstar.value.listCate}">All Categories List</span>
+                        </h5>
+                        <a th:href="@{/admin/categories/add}" class="btn btn-sm btn-success">
+                            <i class="fa-solid fa-plus-circle me-1"></i> Thêm mới
+                        </a>
+                    </div>
+                    <div class="card-body p-4">
+                        <div th:if="${message != null}" class="alert alert-info alert-dismissible fade show" role="alert">
+                            <i class="fa-solid fa-circle-info me-2"></i>
+                            <span class="fw-semibold">[[${message}]]</span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                        <div th:if="${#lists.isEmpty(categories)}" class="alert alert-warning text-center py-4 my-3">
+                            <i class="fa-solid fa-box-open fs-2 mb-2 d-block text-warning"></i>
+                            <h6>Chưa có danh mục nào trong hệ thống!</h6>
+                        </div>
+
+                        <div th:if="${!#lists.isEmpty(categories)}" class="table-responsive">
+                            <table class="table table-hover table-striped align-middle border text-center">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th style="width: 15%;">Category ID</th>
+                                        <th class="text-start" style="width: 55%;">Category Name</th>
+                                        <th style="width: 30%;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="category : ${categories}">
+                                        <td class="fw-bold text-secondary">#[[${category.categoryId}]]</td>
+                                        <td class="text-start fw-medium text-dark">
+                                            <i class="fa-regular fa-folder text-warning me-2"></i>
+                                            <span th:text="${category.name}"></span>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <a th:href="@{'/admin/categories/view/' + ${category.categoryId}}" class="btn btn-outline-info" title="Xem chi tiết">
+                                                    <i class="fa-solid fa-circle-info"></i>
+                                                </a>
+                                                <a th:href="@{'/admin/categories/edit/' + ${category.categoryId}}" class="btn btn-outline-warning" title="Chỉnh sửa">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </a>
+                                                <a th:href="@{'/admin/categories/delete/' + ${category.categoryId}}"
+                                                   onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này?');"
+                                                   class="btn btn-outline-danger" title="Xóa">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-light text-muted small py-2 d-flex justify-content-between align-items-center">
+                        <span>Tổng số danh mục: <strong th:text="${#lists.size(categories)}">0</strong></span>
+                        <a th:href="@{/admin/categories/searchpaginated}" class="btn btn-sm btn-outline-primary">
+                            <i class="fa-solid fa-table-list me-1"></i> Xem dạng Phân trang & Tìm kiếm
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

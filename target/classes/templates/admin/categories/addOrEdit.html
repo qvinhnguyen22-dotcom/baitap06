@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout-admin.html}">
+<head>
+    <title th:text="${category.isEdit ? 'Edit Category' : 'Add New Category'}">Category - HCMUTE</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <section class="row">
+            <div class="col-lg-6 col-md-8 mx-auto mt-3">
+                <form th:action="@{/admin/categories/saveOrUpdate}" method="POST" th:object="${category}">
+                    <div class="card shadow border-0">
+                        <!-- Card Header -->
+                        <div class="card-header py-3" th:classappend="${category.isEdit ? 'bg-warning text-dark' : 'bg-primary text-white'}">
+                            <h4 class="mb-0 fw-bold" th:text="${category.isEdit ? 'Edit Category' : 'Add New Category'}">Add New Category</h4>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="card-body p-4">
+                            <!-- Hidden input isEdit -->
+                            <input type="hidden" th:field="*{isEdit}" />
+
+                            <!-- Category ID (Hiển thị khi edit) -->
+                            <div class="mb-3" th:if="${category.isEdit}">
+                                <label for="categoryId" class="form-label fw-bold" th:text="#{category.id}">Category ID:</label>
+                                <input type="text" readonly="readonly" class="form-control bg-light"
+                                       th:field="*{categoryId}" id="categoryId" placeholder="Category Id" />
+                                <div th:if="${#fields.hasErrors('categoryId')}" class="form-text text-danger" th:errors="*{categoryId}">
+                                    Category ID is required!
+                                </div>
+                            </div>
+
+                            <!-- Category Name -->
+                            <div class="mb-3">
+                                <label for="name" class="form-label fw-bold" th:text="#{category.name}">Category Name:</label>
+                                <input type="text" class="form-control" th:field="*{name}" id="name"
+                                       th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''"
+                                       placeholder="Category Name" />
+                                <div th:if="${#fields.hasErrors('name')}" class="text-danger small mt-1" th:errors="*{name}">
+                                    Category Name is required!
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Footer: Nút lưu, reset, danh sách -->
+                        <div class="card-footer bg-light py-3 d-flex justify-content-between align-items-center">
+                            <a th:href="@{/admin/categories/searchpaginated}" class="btn btn-outline-secondary">
+                                <i class="fa-solid fa-list me-1"></i>
+                                <span th:text="#{category.list}">List Category</span>
+                            </a>
+
+                            <div class="d-flex gap-2">
+                                <button type="reset" class="btn btn-outline-danger">
+                                    <i class="fa-solid fa-rotate-left me-1"></i>
+                                    <span th:text="#{category.reset}">Reset</span>
+                                </button>
+                                <button type="submit" class="btn" th:classappend="${category.isEdit ? 'btn-warning text-dark' : 'btn-success'}">
+                                    <i class="fa-solid fa-floppy-disk me-1"></i>
+                                    <span th:text="${category.isEdit ? 'Update' : 'Save'}">Save</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
